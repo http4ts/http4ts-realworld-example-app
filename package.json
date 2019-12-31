@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "eslint --ext .ts src/**",
     "lint-fix": "eslint --ext .ts --fix src/**",
-    "example": "nodemon",
+    "start": "nodemon",
     "build": "rm -rf dist && tsc -p tsconfig.json",
     "test": "jest",
     "tdd": "jest --watchAll"
