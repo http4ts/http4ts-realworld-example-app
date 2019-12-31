@@ -1,0 +1,83 @@
+{
+  "name": "http4ts-realworld-example-app",
+  "version": "1.0.0",
+  "description": "Realworld app implementation using Typescript and http4ts framework",
+  "scripts": {
+    "lint": "eslint --ext .ts src/**",
+    "lint-fix": "eslint --ext .ts --fix src/**",
+    "example": "nodemon",
+    "build": "rm -rf dist && tsc -p tsconfig.json",
+    "test": "jest",
+    "tdd": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/http4ts/http4ts-realworld-example-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/http4ts/http4ts-realworld-example-app/issues"
+  },
+  "homepage": "https://github.com/http4ts/http4ts-realworld-example-app#readme",
+  "devDependencies": {
+    "@types/jest": "^24.0.25",
+    "@types/node": "^13.1.2",
+    "@typescript-eslint/eslint-plugin": "^2.14.0",
+    "@typescript-eslint/parser": "^2.14.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-jest": "^23.2.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^3.1.0",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.5.0",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
+    "ts-jest": "^24.2.0",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.4"
+  },
+  "dependencies": {
+    "http4ts": "git+ssh://git@github.com/http4ts/http4ts.git"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "rootDir": "./src",
+    "coverageDirectory": "../coverage",
+    "setupFiles": [
+      "<rootDir>../jest/setup.ts"
+    ]
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "plugin:@typescript-eslint/recommended",
+      "prettier/@typescript-eslint",
+      "plugin:prettier/recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+    },
+    "rules": {
+      "@typescript-eslint/explicit-member-accessibility": 0,
+      "@typescript-eslint/no-parameter-properties": 0,
+      "@typescript-eslint/explicit-function-return-type": 0,
+      "@typescript-eslint/no-explicit-any": 0,
+      "@typescript-eslint/no-use-before-define": 0,
+      "@typescript-eslint/no-inferrable-types": 0
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}
