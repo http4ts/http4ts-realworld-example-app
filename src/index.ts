@@ -1,27 +1,23 @@
 import * as http from "http";
 
-import {
-  HttpRequest,
-  HttpResponse,
-  HttpBodyImpl,
-  HttpStatus,
-  toNodeRequestListener
-} from "http4ts";
+import { toNodeRequestListener } from "http4ts";
+import * as pino from "pino";
 
-async function handler(req: HttpRequest): Promise<HttpResponse> {
-  await req.body.asString("UTF-8");
-  return {
-    body: HttpBodyImpl.fromString("This is some string"),
-    headers: {},
-    status: HttpStatus.OK
-  };
+import { router } from "./router";
+import { handleErrorFilter } from "./filters/error-handler";
+
+async function main() {
+  const logger = pino({ prettyPrint: true });
+  const handleError = handleErrorFilter(logger);
+
+  const server = http.createServer(toNodeRequestListener(handleError(router)));
+
+  const hostname = "127.0.0.1";
+  const port = 3000;
+
+  server.listen(port, hostname, () => {
+    logger.info(`Server running at http://${hostname}:${port}/`);
+  });
 }
 
-const server = http.createServer(toNodeRequestListener(handler));
-
-const hostname = "127.0.0.1";
-const port = 3000;
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+main().catch(console.error);
