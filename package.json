@@ -37,7 +37,8 @@
     "prettier": "^1.19.1",
     "ts-jest": "^24.2.0",
     "ts-node": "^8.5.4",
-    "typescript": "^3.7.4"
+    "typescript": "^3.7.4",
+    "web-streams-polyfill": "^2.0.6"
   },
   "dependencies": {
     "http4ts": "git+ssh://git@github.com/http4ts/http4ts.git",
@@ -47,7 +48,6 @@
   "jest": {
     "preset": "ts-jest",
     "rootDir": "./src",
-    "coverageDirectory": "../coverage",
     "setupFiles": [
       "<rootDir>../jest/setup.ts"
     ]
