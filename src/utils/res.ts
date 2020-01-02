@@ -11,3 +11,4 @@ export function res(
     headers
   };
 }
+// TODO: http4ts: Add response factory function
