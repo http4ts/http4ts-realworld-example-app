@@ -6,9 +6,10 @@ import { Router } from "./router";
 import { handleErrorFilter } from "./filters/error-handler";
 import { createLogger } from "./utils/logger";
 import { createDb } from "./db/db";
+import { AppConfig, local } from "./config/app-config";
 
-async function main() {
-  const logger = createLogger();
+async function main(appConfig: AppConfig) {
+  const logger = createLogger(appConfig.logLevel);
 
   const db = createDb();
 
@@ -18,11 +19,10 @@ async function main() {
   const server = http.createServer(toNodeRequestListener(handleError(routes)));
 
   const hostname = "127.0.0.1";
-  const port = 3000;
 
-  server.listen(port, hostname, () => {
-    logger.info(`Server running at http://${hostname}:${port}/`);
+  server.listen(appConfig.port, hostname, () => {
+    logger.info(`Server running at http://${hostname}:${appConfig.port}/`);
   });
 }
 
-main().catch(console.error);
+main(local).catch(console.error);

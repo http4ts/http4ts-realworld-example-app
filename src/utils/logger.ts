@@ -62,6 +62,8 @@ export interface Logger {
   trace: LogFn;
 }
 
-export function createLogger(): Logger {
-  return pino({ prettyPrint: true });
+export type LogLevel = "trace" | "debug" | "info" | "warn" | "error" | "fatal";
+
+export function createLogger(level: LogLevel = "info"): Logger {
+  return pino({ prettyPrint: true, level });
 }
