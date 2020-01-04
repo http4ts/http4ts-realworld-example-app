@@ -1,12 +1,12 @@
 import { createLogger } from "../../utils/logger";
-import { handleErrorFilter } from "../error-handler";
+import { handleErrorFilter, HttpError } from "../error-handler";
 import { HttpRequestImpl, HttpBodyImpl, HttpStatus } from "http4ts";
 
 const logger = createLogger();
 const errorHandler = handleErrorFilter(logger);
 
 describe("Filters.errorHandler", () => {
-  it("should handle errors", async () => {
+  it("should handle errors and return a default error", async () => {
     const handler = errorHandler(() => {
       throw new Error();
     });
@@ -16,9 +16,27 @@ describe("Filters.errorHandler", () => {
       new HttpRequestImpl("/", HttpBodyImpl.fromString(""), "POST", {})
     );
     // TODO: http4ts: add req factory function
-    // TODO: http4ts: Improve HttpMethod type
+    // TODO: http4ts: Improve HttpMethod type. Maybe something like an enum?
     // TODO: http4ts: Change HttpRequestImpl constructor parameter type of httpmethod
 
     expect(resp.status).toBe(HttpStatus.UNPROCESSABLE_ENTITY);
+    expect(await resp.body.asString()).toBe(
+      '{"errors":{"body":["UNPROCESSABLE_ENTITY"]}}'
+    );
+  });
+
+  it("should return the correct http error if the exception is an HttpError", async () => {
+    const handler = errorHandler(() => {
+      throw new HttpError(HttpStatus.BAD_REQUEST);
+    });
+
+    const resp = await handler(
+      new HttpRequestImpl("/", HttpBodyImpl.fromString(""), "GET", {})
+    );
+
+    expect(resp.status).toBe(HttpStatus.BAD_REQUEST);
+    expect(await resp.body.asString()).toBe(
+      '{"errors":{"body":["BAD_REQUEST"]}}'
+    );
   });
 });
