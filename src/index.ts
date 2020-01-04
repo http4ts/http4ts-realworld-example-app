@@ -5,9 +5,13 @@ import { toNodeRequestListener } from "http4ts";
 import { Router } from "./router";
 import { handleErrorFilter } from "./filters/error-handler";
 import { createLogger } from "./utils/logger";
+import { createDb } from "./db/db";
 
 async function main() {
   const logger = createLogger();
+
+  const db = createDb();
+
   const handleError = handleErrorFilter(logger);
   const routes = new Router().routes;
 

@@ -24,6 +24,7 @@
     "@types/jest": "^24.0.25",
     "@types/node": "^13.1.2",
     "@types/pino": "^5.15.1",
+    "@types/pouchdb": "^6.4.0",
     "@typescript-eslint/eslint-plugin": "^2.14.0",
     "@typescript-eslint/parser": "^2.14.0",
     "eslint": "^6.8.0",
@@ -43,7 +44,8 @@
   "dependencies": {
     "http4ts": "git+ssh://git@github.com/http4ts/http4ts.git",
     "pino": "^5.15.0",
-    "pino-pretty": "^3.5.0"
+    "pino-pretty": "^3.5.0",
+    "pouchdb": "^7.1.1"
   },
   "jest": {
     "preset": "ts-jest",
