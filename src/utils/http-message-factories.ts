@@ -1,4 +1,10 @@
-import { HttpBodyImpl, HttpRequestHeaders, HttpStatus } from "http4ts";
+import {
+  HttpBodyImpl,
+  HttpRequestHeaders,
+  HttpStatus,
+  HttpMethod,
+  HttpRequestImpl
+} from "http4ts";
 import { GenericErrorModel } from "../models/dto";
 
 export function res(
@@ -23,4 +29,18 @@ export function errorRes(status: HttpStatus, errorMessages: string[]) {
 
   // TODO: http4ts: add factory function to create response from object and serialize as json
   return res(status, JSON.stringify(body));
+}
+
+export function req(
+  url: string,
+  method: HttpMethod = "GET",
+  body: string = "",
+  headers: HttpRequestHeaders = {}
+) {
+  return new HttpRequestImpl(
+    url,
+    HttpBodyImpl.fromString(body),
+    method,
+    headers
+  );
 }

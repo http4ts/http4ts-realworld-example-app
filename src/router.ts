@@ -1,5 +1,5 @@
 import { routes, get, HttpStatus } from "http4ts";
-import { res } from "./utils/res";
+import { res } from "./utils/http-message-factories";
 // TODO: router handlers should not be availabe on top-level http4ts package
 
 export class Router {

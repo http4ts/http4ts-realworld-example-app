@@ -1,6 +1,6 @@
 import { HttpHandler, HttpRequest, HttpStatus } from "http4ts";
 import { Logger } from "../utils/logger";
-import { errorRes } from "../utils/res";
+import { errorRes } from "../utils/http-message-factories";
 
 export class HttpError extends Error {
   constructor(public status: HttpStatus, message: string = HttpStatus[status]) {
