@@ -44,3 +44,11 @@ export function req(
     headers
   );
 }
+
+export function jsonRes<T>(response: {
+  status: HttpStatus;
+  body?: T;
+  headers?: HttpRequestHeaders;
+}) {
+  return res(response.status, JSON.stringify(response.body), response.headers);
+}

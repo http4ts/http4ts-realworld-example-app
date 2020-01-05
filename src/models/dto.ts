@@ -1,4 +1,4 @@
-import { Opaque } from "./opaque";
+import { Email, Token, Username, Bio, Image, PlainPassword } from "./domain";
 
 export interface GenericErrorModelBody {
   body: string[];
@@ -8,16 +8,9 @@ export interface GenericErrorModel {
   errors: GenericErrorModelBody;
 }
 
-export type Email = Opaque<string, "Email">;
-export type Password = Opaque<string, "Password">;
-export type Token = Opaque<string, "Token">;
-export type Username = Opaque<string, "Username">;
-export type Bio = Opaque<string, "Bio">;
-export type Image = Opaque<string, "Image">;
-
 export interface LoginUserDto {
   email: Email;
-  password: Password;
+  password: PlainPassword;
 }
 
 export interface UserDto {
@@ -26,4 +19,18 @@ export interface UserDto {
   username: Username;
   bio?: Bio;
   image?: Image;
+}
+
+export interface NewUserDto {
+  username: Username;
+  password: PlainPassword;
+  email: Email;
+}
+
+export interface RegisterUserRequest {
+  user: NewUserDto;
+}
+
+export interface UserResponse {
+  user: UserDto;
 }

@@ -3,7 +3,7 @@ import { handleErrorFilter, HttpError } from "../error-handler";
 import { HttpStatus } from "http4ts";
 import { req } from "../../utils/http-message-factories";
 
-const logger = createLogger();
+const logger = createLogger("fatal");
 const errorHandler = handleErrorFilter(logger);
 
 describe("Filters.errorHandler", () => {
