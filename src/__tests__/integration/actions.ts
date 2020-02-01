@@ -16,7 +16,10 @@ export class Actions {
 
     const resp = await fetch(`${this.baseUrl}/api/users`, {
       method: "POST",
-      body: registerReqBody
+      body: registerReqBody,
+      headers: {
+        "Content-Type": "application/json"
+      }
     });
 
     expect(resp.status).toBe(HttpStatus.CREATED);

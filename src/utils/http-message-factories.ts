@@ -50,5 +50,8 @@ export function jsonRes<T>(response: {
   body?: T;
   headers?: HttpRequestHeaders;
 }) {
-  return res(response.status, JSON.stringify(response.body), response.headers);
+  return res(response.status, JSON.stringify(response.body), {
+    ...response.headers,
+    "Content-Type": "application/json; charset=utf-8"
+  });
 }
