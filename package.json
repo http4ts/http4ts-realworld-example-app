@@ -9,6 +9,7 @@
     "build": "rm -rf dist && tsc -p tsconfig.json",
     "test": "jest",
     "tdd": "jest --watchAll",
+    "test-ci": "jest --ci --coverage",
     "start-db": "pouchdb-server --dir db --no-stdout-logs"
   },
   "repository": {

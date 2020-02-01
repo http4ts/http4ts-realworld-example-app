@@ -7,12 +7,10 @@ import { RegisterUserHandler } from "./handlers/register-user-handler";
 export class Router {
   constructor(private registerUser: RegisterUserHandler) {}
 
-  get routes() {
-    return routes(
-      get("/healthcheck", () => res(HttpStatus.OK)),
-      post("/api/users", this._registerUser())
-    );
-  }
+  routes = routes(
+    get("/healthcheck", () => res(HttpStatus.OK)),
+    post("/api/users", this._registerUser())
+  );
 
   // TODO: http4ts: Maybe we should create generic HttpHandler type. We should look into http4k for inspiration.
   private _registerUser(): HttpHandler {

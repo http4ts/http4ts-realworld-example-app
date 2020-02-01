@@ -64,3 +64,4 @@ dist
 junit.xml
 .vscode/
 db
+log.txt

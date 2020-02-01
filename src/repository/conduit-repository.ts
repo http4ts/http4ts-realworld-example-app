@@ -1,5 +1,4 @@
 import { User, NewUser, Username } from "../models/domain";
-import { createLogger } from "../utils/logger";
 
 export interface ConduitRepository {
   getUserByUsername(username: Username): Promise<User | null>;
@@ -7,8 +6,6 @@ export interface ConduitRepository {
 }
 
 export class ConduitRepositoryImpl implements ConduitRepository {
-  private logger = createLogger("info");
-
   constructor(private db: PouchDB.Database) {}
 
   async getUserByUsername(username: Username): Promise<User | null> {
@@ -23,7 +20,6 @@ export class ConduitRepositoryImpl implements ConduitRepository {
   }
 
   async insertUser(newUser: NewUser): Promise<void> {
-    this.logger.info("inserUser:", newUser);
     await this.db.put({ _id: `users/${newUser.username}`, ...newUser });
   }
 }
