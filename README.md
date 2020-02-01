@@ -1,6 +1,6 @@
 # ![RealWorld Example App](logo.png)
 
-
+[![Node CI](https://github.com/http4ts/http4ts-realworld-example-app/workflows/Node%20CI/badge.svg)](https://github.com/http4ts/http4ts-realworld-example-app/actions)
 [![codecov](https://codecov.io/gh/http4ts/http4ts-realworld-example-app/branch/master/graph/badge.svg)](https://codecov.io/gh/http4ts/http4ts-realworld-example-app)
 
 > ### [YOUR_FRAMEWORK] codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
