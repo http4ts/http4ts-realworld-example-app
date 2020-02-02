@@ -19,6 +19,7 @@ export class Router {
 
     // TODO: http4ts: We need better jsonRes response factories.
     // TODO: Investigate the possibility of using a filter for jsonRes factory
+
     return bodyMapper.response(HttpStatus.CREATED, { user: result });
   };
 
