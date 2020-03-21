@@ -13,12 +13,11 @@ describe("Integration.Auth", () => {
     actions = new Actions(`http://localhost:${itConfig.port}`);
   });
 
-  afterEach(done => {
+  afterEach((done) => {
     server.close(done);
   });
 
   it("Register", async () => {
-    // TODO: http4ts: We need httpclient implementation. It is useful for testing
     const response = await actions.registerUser(
       "jjacob@gmail.com",
       "johnjacob",
@@ -28,8 +27,8 @@ describe("Integration.Auth", () => {
     const expectedResponse = {
       user: {
         email: "jjacob@gmail.com",
-        username: "johnjacob"
-      }
+        username: "johnjacob",
+      },
     };
 
     expect(response).toMatchObject(expectedResponse);

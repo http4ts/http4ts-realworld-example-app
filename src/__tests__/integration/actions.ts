@@ -1,6 +1,4 @@
-import fetch from "node-fetch";
-
-import { HttpStatus } from "http4ts";
+import { HttpStatus, send, req, HttpMethods } from "http4ts";
 
 export class Actions {
   constructor(private baseUrl: string) {}
@@ -10,19 +8,21 @@ export class Actions {
       user: {
         email,
         password,
-        username
-      }
+        username,
+      },
     });
 
-    const resp = await fetch(`${this.baseUrl}/api/users`, {
-      method: "POST",
+    const request = req({
+      url: `${this.baseUrl}/api/users`,
+      method: HttpMethods.POST,
       body: registerReqBody,
       headers: {
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      },
     });
+    const resp = await send(request);
 
     expect(resp.status).toBe(HttpStatus.CREATED);
-    return await resp.json();
+    return JSON.parse(await resp.body.asString());
   }
 }
