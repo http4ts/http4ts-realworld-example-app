@@ -1,4 +1,4 @@
-import { HttpRequest, HttpStatus, HttpRequestHeaders } from "http4ts";
+import { HttpRequest, HttpStatus, RequestHttpHeaders } from "http4ts";
 import { parse } from "content-type";
 import { HttpError } from "../filters/error-handler";
 import { jsonRes } from "./http-message-factories";
@@ -18,7 +18,7 @@ export class BodyMapper<TReqBody, TResBody> {
     }
   }
 
-  response(status: HttpStatus, body: TResBody, headers?: HttpRequestHeaders) {
+  response(status: HttpStatus, body: TResBody, headers?: RequestHttpHeaders) {
     return jsonRes({ status, body, headers });
   }
 }

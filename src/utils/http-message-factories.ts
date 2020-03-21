@@ -1,57 +1,28 @@
-import {
-  HttpBodyImpl,
-  HttpRequestHeaders,
-  HttpStatus,
-  HttpMethod,
-  HttpRequestImpl
-} from "http4ts";
+import { HttpStatus, RequestHttpHeaders, res } from "http4ts";
 import { GenericErrorModel } from "../models/dto";
-
-export function res(
-  status: HttpStatus,
-  body = "",
-  headers: HttpRequestHeaders = {}
-) {
-  return {
-    status,
-    body: HttpBodyImpl.fromString(body),
-    headers
-  };
-}
-// TODO: http4ts: Add response factory function
 
 export function errorRes(status: HttpStatus, errorMessages: string[]) {
   const body: GenericErrorModel = {
     errors: {
-      body: errorMessages
-    }
+      body: errorMessages,
+    },
   };
 
   // TODO: http4ts: add factory function to create response from object and serialize as json
-  return res(status, JSON.stringify(body));
-}
-
-export function req(
-  url: string,
-  method: HttpMethod = "GET",
-  body: string = "",
-  headers: HttpRequestHeaders = {}
-) {
-  return new HttpRequestImpl(
-    url,
-    HttpBodyImpl.fromString(body),
-    method,
-    headers
-  );
+  return res({ status, body: JSON.stringify(body) });
 }
 
 export function jsonRes<T>(response: {
   status: HttpStatus;
   body?: T;
-  headers?: HttpRequestHeaders;
+  headers?: RequestHttpHeaders;
 }) {
-  return res(response.status, JSON.stringify(response.body), {
-    ...response.headers,
-    "Content-Type": "application/json; charset=utf-8"
+  return res({
+    status: response.status,
+    body: JSON.stringify(response.body),
+    headers: {
+      ...response.headers,
+      "Content-Type": "application/json; charset=utf-8",
+    },
   });
 }

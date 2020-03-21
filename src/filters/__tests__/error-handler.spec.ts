@@ -1,7 +1,6 @@
 import { createLogger } from "../../utils/logger";
 import { handleErrorFilter, HttpError } from "../error-handler";
-import { HttpStatus } from "http4ts";
-import { req } from "../../utils/http-message-factories";
+import { HttpStatus, req, HttpMethods } from "http4ts";
 
 const logger = createLogger("fatal");
 const errorHandler = handleErrorFilter(logger);
@@ -13,10 +12,7 @@ describe("Filters.errorHandler", () => {
     });
 
     // TODO: error handler does not need to be an async function
-    const resp = await handler(req("/", "", "POST"));
-    // TODO: http4ts: add req factory function
-    // TODO: http4ts: Improve HttpMethod type. Maybe something like an enum?
-    // TODO: http4ts: Change HttpRequestImpl constructor parameter type of httpmethod
+    const resp = await handler(req({ url: "/", method: HttpMethods.POST }));
 
     expect(resp.status).toBe(HttpStatus.UNPROCESSABLE_ENTITY);
     expect(await resp.body.asString()).toBe(
@@ -29,7 +25,7 @@ describe("Filters.errorHandler", () => {
       throw new HttpError(HttpStatus.BAD_REQUEST);
     });
 
-    const resp = await handler(req("/", ""));
+    const resp = await handler(req({ url: "/" }));
 
     expect(resp.status).toBe(HttpStatus.BAD_REQUEST);
     expect(await resp.body.asString()).toBe(
