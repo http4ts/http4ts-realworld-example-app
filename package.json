@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Realworld app implementation using Typescript and http4ts framework",
   "scripts": {
-    "lint": "eslint --ext .ts src/**",
+    "lint": "eslint --ext .ts src/** && prettier",
     "lint-fix": "eslint --ext .ts --fix src/**",
     "start": "npm run start-db & nodemon",
     "build": "rm -rf dist && tsc -p tsconfig.json",
