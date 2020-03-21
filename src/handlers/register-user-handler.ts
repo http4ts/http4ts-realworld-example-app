@@ -20,7 +20,7 @@ export class RegisterUserHandler {
 
     await this.repository.insertUser({
       ...newUserDto,
-      password: await hash(newUserDto.password)
+      password: await hash(newUserDto.password),
     });
 
     return {
@@ -28,7 +28,7 @@ export class RegisterUserHandler {
       token: await generateJwtToken(newUserDto.username, newUserDto.email),
       username: newUserDto.username,
       bio: undefined,
-      image: undefined
+      image: undefined,
     };
   }
 }

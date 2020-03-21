@@ -28,7 +28,7 @@ export async function main(appConfig: AppConfig) {
 
   const hostname = "127.0.0.1";
 
-  await new Promise(resolve => {
+  await new Promise((resolve) => {
     server.listen(appConfig.port, hostname, () => {
       logger.info(`Server running at http://${hostname}:${appConfig.port}/`);
       resolve();

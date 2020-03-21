@@ -13,7 +13,7 @@ describe("JWT", () => {
     expect(decoded).toMatchObject({
       username: "ali",
       email: "alisabzevari@gmail.com",
-      iss: "thinkster.io"
+      iss: "thinkster.io",
     });
   });
 

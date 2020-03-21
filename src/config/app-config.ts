@@ -15,6 +15,6 @@ export const local: AppConfig = {
   port: 3000,
   db: {
     name: "http://localhost:5984/conduit",
-    inMemory: false
-  }
+    inMemory: false,
+  },
 };
