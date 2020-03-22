@@ -13,7 +13,7 @@ describe("Integration.Auth", () => {
     actions = new Actions(`http://localhost:${itConfig.port}`);
   });
 
-  afterEach((done) => {
+  afterEach(done => {
     server.close(done);
   });
 
@@ -27,8 +27,8 @@ describe("Integration.Auth", () => {
     const expectedResponse = {
       user: {
         email: "jjacob@gmail.com",
-        username: "johnjacob",
-      },
+        username: "johnjacob"
+      }
     };
 
     expect(response).toMatchObject(expectedResponse);

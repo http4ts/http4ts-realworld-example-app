@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Realworld app implementation using Typescript and http4ts framework",
   "scripts": {
-    "lint": "eslint --ext .ts src/** && prettier",
+    "lint": "eslint --ext .ts src/**",
     "lint-fix": "eslint --ext .ts --fix src/**",
     "start": "npm run start-db & nodemon",
     "build": "rm -rf dist && tsc -p tsconfig.json",
@@ -41,7 +41,7 @@
     "nodemon": "^2.0.2",
     "pouchdb-adapter-memory": "^7.2.1",
     "pouchdb-server": "^4.2.0",
-    "prettier": "^2.0.0",
+    "prettier": "^1.19.1",
     "ts-jest": "^25.2.1",
     "ts-node": "^8.7.0",
     "typescript": "^3.8.3"

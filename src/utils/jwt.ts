@@ -11,7 +11,7 @@ export function generateJwtToken(username: Username, email: Email) {
       {
         issuer: "thinkster.io",
         subject: username,
-        expiresIn: "10h",
+        expiresIn: "10h"
       },
       (err, encoded) => {
         if (err) {

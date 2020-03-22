@@ -8,8 +8,8 @@ export class Actions {
       user: {
         email,
         password,
-        username,
-      },
+        username
+      }
     });
 
     const request = req({
@@ -17,8 +17,8 @@ export class Actions {
       method: HttpMethods.POST,
       body: registerReqBody,
       headers: {
-        "Content-Type": "application/json",
-      },
+        "Content-Type": "application/json"
+      }
     });
     const resp = await send(request);
 

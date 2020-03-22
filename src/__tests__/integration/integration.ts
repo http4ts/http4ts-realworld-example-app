@@ -5,6 +5,6 @@ export const itConfig: AppConfig = {
   port: 3003,
   db: {
     inMemory: true,
-    name: "conduit",
-  },
+    name: "conduit"
+  }
 };

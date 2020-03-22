@@ -28,7 +28,7 @@ export const handleErrorFilter = (logger: Logger) => (
     }
 
     return errorRes(HttpStatus.UNPROCESSABLE_ENTITY, [
-      HttpStatus[HttpStatus.UNPROCESSABLE_ENTITY],
+      HttpStatus[HttpStatus.UNPROCESSABLE_ENTITY]
     ]);
   }
 };

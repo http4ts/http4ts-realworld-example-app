@@ -8,7 +8,7 @@ export class Router {
   constructor(private registerUser: RegisterUserHandler) {}
 
   // TODO: http4ts: Maybe we should create generic HttpHandler type. We should look into http4k for inspiration.
-  private _registerUser: HttpHandler = async (req) => {
+  private _registerUser: HttpHandler = async req => {
     // TODO: http4ts: We need a typesafe requst body validator. Like lenses in http4k
     const bodyMapper = new BodyMapper<RegisterUserRequest, UserResponse>(req);
 

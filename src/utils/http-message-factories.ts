@@ -4,8 +4,8 @@ import { GenericErrorModel } from "../models/dto";
 export function errorRes(status: HttpStatus, errorMessages: string[]) {
   const body: GenericErrorModel = {
     errors: {
-      body: errorMessages,
-    },
+      body: errorMessages
+    }
   };
 
   // TODO: http4ts: add factory function to create response from object and serialize as json
@@ -22,7 +22,7 @@ export function jsonRes<T>(response: {
     body: JSON.stringify(response.body),
     headers: {
       ...response.headers,
-      "Content-Type": "application/json; charset=utf-8",
-    },
+      "Content-Type": "application/json; charset=utf-8"
+    }
   });
 }
