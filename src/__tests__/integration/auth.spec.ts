@@ -1,7 +1,7 @@
 import { itConfig } from "./integration";
 import { Actions } from "./actions";
 import { Server } from "http";
-import { main } from "../../main";
+import { createServer } from "../..";
 
 describe("Integration.Auth", () => {
   let actions: Actions;
@@ -9,7 +9,7 @@ describe("Integration.Auth", () => {
 
   // Add helper function for starting and stopping integration tests
   beforeEach(async () => {
-    server = await main(itConfig);
+    server = await createServer(itConfig);
     actions = new Actions(`http://localhost:${itConfig.port}`);
   });
 
