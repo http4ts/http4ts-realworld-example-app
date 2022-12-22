@@ -51,7 +51,7 @@
     "bcrypt": "^4.0.1",
     "content-type": "^1.0.4",
     "http4ts": "0.0.3",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "pino": "^6.1.1",
     "pino-pretty": "^4.0.0",
     "pouchdb": "^7.2.1"
